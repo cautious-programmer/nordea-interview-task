@@ -5,6 +5,7 @@ import com.nordea.preparator.SentencePreparator;
 import com.nordea.preparator.WordPreparator;
 import com.nordea.writer.Writer;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -14,6 +15,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.Files.lines;
 import static java.nio.file.Paths.get;
 
+@Slf4j
 @RequiredArgsConstructor
 public class FileParser {
 
@@ -33,5 +35,6 @@ public class FileParser {
                     .map(Sentence::createSentenceWithSortedWords);
             writer.write(sentences);
         }
+        log.info("parsing has been completed. output file : [{}]", outputFilePath);
     }
 }
